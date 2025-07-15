@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Save, User, Store, CreditCard, Bell, Shield, Database } from "lucide-react";
+import { Save, User, Store, CreditCard, Bell, Shield, Database, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -30,9 +30,10 @@ export default function Settings() {
       </div>
 
       <Tabs defaultValue="general" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-6">
+        <TabsList className="grid w-full grid-cols-7">
           <TabsTrigger value="general">General</TabsTrigger>
           <TabsTrigger value="store">Store</TabsTrigger>
+          <TabsTrigger value="delivery">Delivery</TabsTrigger>
           <TabsTrigger value="payments">Payments</TabsTrigger>
           <TabsTrigger value="notifications">Notifications</TabsTrigger>
           <TabsTrigger value="security">Security</TabsTrigger>
@@ -103,6 +104,62 @@ export default function Settings() {
                 <div>
                   <Label htmlFor="timezone">Timezone</Label>
                   <Input id="timezone" defaultValue="America/New_York" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="delivery">
+          <Card className="shadow-card">
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Truck className="mr-2 h-5 w-5" />
+                Delivery Settings
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="deliveryFee">Delivery Fee ($)</Label>
+                  <Input id="deliveryFee" type="number" defaultValue="5.00" />
+                </div>
+                <div>
+                  <Label htmlFor="freeDeliveryThreshold">Free Delivery Threshold ($)</Label>
+                  <Input id="freeDeliveryThreshold" type="number" defaultValue="50.00" />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="deliveryRadius">Delivery Radius (miles)</Label>
+                  <Input id="deliveryRadius" type="number" defaultValue="10" />
+                </div>
+                <div>
+                  <Label htmlFor="avgDeliveryTime">Average Delivery Time (mins)</Label>
+                  <Input id="avgDeliveryTime" type="number" defaultValue="30" />
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="font-medium">Enable Fast Delivery</h4>
+                    <p className="text-sm text-muted-foreground">Offer 15-minute express delivery</p>
+                  </div>
+                  <Switch defaultChecked />
+                </div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="font-medium">Real-time Tracking</h4>
+                    <p className="text-sm text-muted-foreground">Allow customers to track deliveries</p>
+                  </div>
+                  <Switch defaultChecked />
+                </div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="font-medium">SMS Delivery Updates</h4>
+                    <p className="text-sm text-muted-foreground">Send SMS updates to customers</p>
+                  </div>
+                  <Switch defaultChecked />
                 </div>
               </div>
             </CardContent>

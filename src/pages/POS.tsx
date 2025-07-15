@@ -8,7 +8,10 @@ import {
   DollarSign,
   Smartphone,
   Search,
-  Calculator
+  Calculator,
+  Truck,
+  MapPin,
+  Clock
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -78,10 +81,31 @@ export default function POS() {
   const tax = subtotal * 0.08; // 8% tax
   const total = subtotal + tax;
 
-  const handleCheckout = (paymentMethod: string) => {
+  const handleCheckout = (paymentMethod: string, deliveryOption?: string) => {
     console.log("Processing payment with:", paymentMethod);
+    console.log("Delivery option:", deliveryOption);
     console.log("Cart:", cart);
     console.log("Total:", total);
+    
+    if (deliveryOption === 'delivery') {
+      // Create delivery order
+      const deliveryOrder = {
+        orderId: `#${Date.now()}`,
+        items: cart,
+        total: total,
+        paymentMethod: paymentMethod,
+        customer: {
+          name: "Walk-in Customer", // This would come from a customer selection
+          phone: "+1 (555) 000-0000",
+          address: "Customer address would be collected here"
+        },
+        status: "pending",
+        priority: "normal",
+        estimatedTime: "30 mins"
+      };
+      console.log("Created delivery order:", deliveryOrder);
+    }
+    
     // Process payment here
     setCart([]);
   };
@@ -214,6 +238,39 @@ export default function POS() {
             )}
           </CardContent>
         </Card>
+
+        {/* Delivery Options */}
+        {cart.length > 0 && (
+          <Card className="shadow-card">
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Truck className="mr-2 h-5 w-5" />
+                Delivery Options
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <Button 
+                variant="outline"
+                className="w-full"
+                onClick={() => handleCheckout('cash', 'pickup')}
+              >
+                <MapPin className="mr-2 h-4 w-4" />
+                Store Pickup
+              </Button>
+              <Button 
+                className="w-full bg-gradient-hero hover:shadow-glow transition-all duration-300"
+                onClick={() => handleCheckout('cash', 'delivery')}
+              >
+                <Truck className="mr-2 h-4 w-4" />
+                Fast Delivery
+                <Badge variant="secondary" className="ml-2">
+                  <Clock className="mr-1 h-3 w-3" />
+                  30 mins
+                </Badge>
+              </Button>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Payment Methods */}
         {cart.length > 0 && (

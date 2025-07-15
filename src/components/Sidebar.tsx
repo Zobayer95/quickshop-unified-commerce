@@ -8,7 +8,9 @@ import {
   BarChart3, 
   Settings,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Truck,
+  MapPin
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -23,6 +25,8 @@ const navigation = [
   { name: "Inventory", href: "/inventory", icon: Package },
   { name: "POS", href: "/pos", icon: ShoppingCart },
   { name: "Sales", href: "/sales", icon: CreditCard },
+  { name: "Delivery", href: "/delivery", icon: Truck },
+  { name: "Riders", href: "/riders", icon: MapPin },
   { name: "Customers", href: "/customers", icon: Users },
   { name: "Analytics", href: "/analytics", icon: BarChart3 },
   { name: "Settings", href: "/settings", icon: Settings },

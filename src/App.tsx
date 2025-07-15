@@ -8,6 +8,8 @@ import Dashboard from "./pages/Dashboard";
 import Inventory from "./pages/Inventory";
 import POS from "./pages/POS";
 import Sales from "./pages/Sales";
+import Delivery from "./pages/Delivery";
+import Riders from "./pages/Riders";
 import Customers from "./pages/Customers";
 import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
@@ -27,6 +29,8 @@ const App = () => (
             <Route path="inventory" element={<Inventory />} />
             <Route path="pos" element={<POS />} />
             <Route path="sales" element={<Sales />} />
+            <Route path="delivery" element={<Delivery />} />
+            <Route path="riders" element={<Riders />} />
             <Route path="customers" element={<Customers />} />
             <Route path="analytics" element={<Analytics />} />
             <Route path="settings" element={<Settings />} />
