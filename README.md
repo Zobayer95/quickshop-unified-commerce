@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/b6541253-82d3-42d4-aac5-52fbd96b1847
+**URL**: https://quickshop-unified-commerce.lovable.app/inventory/low-stock
 
 ## How can I edit this code?
 
