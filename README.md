@@ -10,7 +10,7 @@ There are several ways of editing your application.
 
 **Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/b6541253-82d3-42d4-aac5-52fbd96b1847) and start prompting.
+Simply visit the [Lovable Project](https://quickshop-unified-commerce.lovable.app/inventory/low-stock) and start prompting.
 
 Changes made via Lovable will be committed automatically to this repo.
 
