@@ -33,6 +33,7 @@ import Tools from "./pages/Tools";
 import Users from "./pages/Users";
 import Profile from "./pages/Profile";
 import Help from "./pages/Help";
+import PurchaseOrders from "./pages/PurchaseOrders";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -54,7 +55,7 @@ const App = () => (
             <Route path="inventory/low-stock" element={<LowStock />} />
             <Route path="inventory/locations" element={<Locations />} />
             <Route path="inventory/scan" element={<ScanItems />} />
-            <Route path="purchases" element={<Purchases />} />
+            <Route path="purchases" element={<PurchaseOrders />} />
             <Route path="sales" element={<Sales />} />
             <Route path="invoices" element={<Invoices />} />
             <Route path="returns" element={<Returns />} />
