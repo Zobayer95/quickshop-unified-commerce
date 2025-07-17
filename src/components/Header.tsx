@@ -11,7 +11,7 @@ export const Header = () => {
       <div className="flex-1 max-w-md relative">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={16} />
         <Input
-          placeholder="Search products, orders, customers..."
+          placeholder="Search inventory, orders, shipments..."
           className="pl-10 bg-muted/50 border-0 focus:bg-card focus:ring-1 focus:ring-primary/20"
         />
       </div>

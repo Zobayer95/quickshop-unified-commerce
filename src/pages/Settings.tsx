@@ -51,8 +51,8 @@ export default function Settings() {
             <CardContent className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="businessName">Business Name</Label>
-                  <Input id="businessName" defaultValue="BizManager Store" />
+                  <Label htmlFor="businessName">Warehouse Name</Label>
+                  <Input id="businessName" defaultValue="Main Warehouse" />
                 </div>
                 <div>
                   <Label htmlFor="ownerName">Owner Name</Label>

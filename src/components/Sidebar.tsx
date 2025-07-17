@@ -126,7 +126,7 @@ export const Sidebar = ({ collapsed, onToggle }: SidebarProps) => {
       <div className="flex items-center justify-between p-4 border-b border-secondary-glow/20">
         {!collapsed && (
           <h1 className="text-xl font-bold bg-gradient-to-r from-primary-glow to-primary bg-clip-text text-transparent">
-            BizManager
+            Warehouse
           </h1>
         )}
         <Button
