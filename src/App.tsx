@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { Layout } from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 import Inventory from "./pages/Inventory";
@@ -34,16 +35,18 @@ import Users from "./pages/Users";
 import Profile from "./pages/Profile";
 import Help from "./pages/Help";
 import PurchaseOrders from "./pages/PurchaseOrders";
+import WarehouseShelving from "./pages/WarehouseShelving";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
+    <ThemeProvider defaultTheme="system" storageKey="warehouse-theme">
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
@@ -54,6 +57,7 @@ const App = () => (
             <Route path="inventory/categories" element={<Categories />} />
             <Route path="inventory/low-stock" element={<LowStock />} />
             <Route path="inventory/locations" element={<Locations />} />
+            <Route path="inventory/shelving" element={<WarehouseShelving />} />
             <Route path="inventory/scan" element={<ScanItems />} />
             <Route path="purchases" element={<PurchaseOrders />} />
             <Route path="sales" element={<Sales />} />
@@ -84,6 +88,7 @@ const App = () => (
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 

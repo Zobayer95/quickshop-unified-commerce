@@ -35,7 +35,8 @@ import {
   User,
   UserCog,
   HelpCircle,
-  LogOut
+  LogOut,
+  Warehouse
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -62,6 +63,7 @@ const navigationGroups = [
       { name: "Categories", href: "/inventory/categories", icon: Grid3x3 },
       { name: "Low Stock", href: "/inventory/low-stock", icon: AlertTriangle, badge: "12" },
       { name: "Locations", href: "/inventory/locations", icon: Building },
+      { name: "Warehouse Shelving", href: "/inventory/shelving", icon: Warehouse },
       { name: "Scan Items", href: "/inventory/scan", icon: ScanLine },
     ]
   },
