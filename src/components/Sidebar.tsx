@@ -149,37 +149,55 @@ export const Sidebar = ({ collapsed, onToggle }: SidebarProps) => {
               </h3>
             )}
             <div className="space-y-1">
-              {group.items.map((item) => (
-                <NavLink
-                  key={item.name}
-                  to={item.href}
-                  className={({ isActive }) =>
-                    cn(
-                      "flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors group",
-                      "hover:bg-secondary-glow/20",
-                      isActive && "bg-primary text-primary-foreground shadow-glow",
-                      collapsed && "justify-center"
-                    )
-                  }
-                >
-                  <item.icon size={18} className="shrink-0" />
-                  {!collapsed && (
-                    <>
-                      <span className="ml-3 truncate">{item.name}</span>
-                      {item.badge && (
-                        <span className="ml-auto bg-primary-glow text-primary-foreground text-xs px-2 py-0.5 rounded-full font-medium">
-                          {item.badge}
-                        </span>
+              {group.items.map((item) => {
+                if (item.name === "Logout") {
+                  return (
+                    <button
+                      key={item.name}
+                      onClick={() => window.location.href = "/logout"}
+                      className={cn(
+                        "w-full flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 group relative",
+                        "text-destructive hover:bg-destructive/10 hover:text-destructive",
+                        collapsed && "justify-center"
                       )}
-                    </>
-                  )}
-                  {collapsed && item.badge && (
-                    <span className="absolute left-full ml-2 bg-primary-glow text-primary-foreground text-xs px-1.5 py-0.5 rounded-full font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                      {item.badge}
-                    </span>
-                  )}
-                </NavLink>
-              ))}
+                    >
+                      <item.icon size={18} className="shrink-0" />
+                      {!collapsed && <span className="ml-3 truncate">{item.name}</span>}
+                    </button>
+                  );
+                }
+                return (
+                  <NavLink
+                    key={item.name}
+                    to={item.href}
+                    className={({ isActive }) =>
+                      cn(
+                        "flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors group",
+                        "hover:bg-secondary-glow/20",
+                        isActive && "bg-primary text-primary-foreground shadow-glow",
+                        collapsed && "justify-center"
+                      )
+                    }
+                  >
+                    <item.icon size={18} className="shrink-0" />
+                    {!collapsed && (
+                      <>
+                        <span className="ml-3 truncate">{item.name}</span>
+                        {item.badge && (
+                          <span className="ml-auto bg-primary-glow text-primary-foreground text-xs px-2 py-0.5 rounded-full font-medium">
+                            {item.badge}
+                          </span>
+                        )}
+                      </>
+                    )}
+                    {collapsed && item.badge && (
+                      <span className="absolute left-full ml-2 bg-primary-glow text-primary-foreground text-xs px-1.5 py-0.5 rounded-full font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                        {item.badge}
+                      </span>
+                    )}
+                  </NavLink>
+                );
+              })}
             </div>
           </div>
         ))}

@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Layout } from "./components/Layout";
 import Login from "./pages/Login";
+import Logout from "./pages/Logout";
 import Dashboard from "./pages/Dashboard";
 import Inventory from "./pages/Inventory";
 import POS from "./pages/POS";
@@ -44,19 +45,34 @@ const queryClient = new QueryClient();
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showLogout, setShowLogout] = useState(false);
 
   const handleLogin = () => {
     setIsAuthenticated(true);
+    setShowLogout(false);
   };
 
-  if (!isAuthenticated) {
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setShowLogout(false);
+  };
+
+  const showLogoutPage = () => {
+    setShowLogout(true);
+  };
+
+  if (!isAuthenticated || showLogout) {
     return (
       <QueryClientProvider client={queryClient}>
         <ThemeProvider defaultTheme="system" storageKey="warehouse-theme">
           <TooltipProvider>
             <Toaster />
             <Sonner />
-            <Login onLogin={handleLogin} />
+            {showLogout ? (
+              <Logout onLogout={handleLogout} />
+            ) : (
+              <Login onLogin={handleLogin} />
+            )}
           </TooltipProvider>
         </ThemeProvider>
       </QueryClientProvider>
@@ -107,6 +123,7 @@ const App = () => {
               <Route path="profile" element={<Profile />} />
               <Route path="help" element={<Help />} />
             </Route>
+            <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
