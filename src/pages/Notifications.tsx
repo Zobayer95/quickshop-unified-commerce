@@ -17,15 +17,15 @@ export default function Notifications() {
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
-            <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-              <p className="font-medium">Low Stock Alert</p>
+            <div className="p-3 bg-warning/10 border border-warning/20 rounded-lg">
+              <p className="font-medium text-warning-foreground">Low Stock Alert</p>
               <p className="text-sm text-muted-foreground">iPhone 15 Pro is running low on stock (5 units left)</p>
             </div>
-            <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
-              <p className="font-medium">New Order</p>
+            <div className="p-3 bg-success/10 border border-success/20 rounded-lg">
+              <p className="font-medium text-success-foreground">New Order</p>
               <p className="text-sm text-muted-foreground">Order #1234 has been placed by John Doe</p>
             </div>
-            <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="p-3 bg-primary/10 border border-primary/20 rounded-lg">
               <p className="font-medium">Rider Assignment</p>
               <p className="text-sm text-muted-foreground">Order #1230 has been assigned to rider Mike Johnson</p>
             </div>
