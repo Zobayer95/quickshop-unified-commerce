@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Search, Filter, Download, Eye } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -45,6 +46,35 @@ const salesData = [
 
 export default function Sales() {
   const [searchTerm, setSearchTerm] = useState("");
+  const { toast } = useToast();
+
+  const handleExportSales = () => {
+    // Create CSV content
+    const csvHeader = "Order ID,Customer,Amount,Items,Payment Method,Status,Date\n";
+    const csvContent = salesData.map(sale => 
+      `${sale.id},${sale.customer},${sale.amount},${sale.items},${sale.paymentMethod},${sale.status},${sale.date}`
+    ).join('\n');
+    
+    const fullCsvContent = csvHeader + csvContent;
+    
+    // Create and download file
+    const blob = new Blob([fullCsvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    if (link.download !== undefined) {
+      const url = URL.createObjectURL(blob);
+      link.setAttribute('href', url);
+      link.setAttribute('download', `sales-export-${new Date().toISOString().split('T')[0]}.csv`);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+    
+    toast({
+      title: "Export Successful",
+      description: "Sales data has been exported to CSV file",
+    });
+  };
 
   const filteredSales = salesData.filter(sale =>
     sale.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -68,7 +98,10 @@ export default function Sales() {
           <h1 className="text-3xl font-bold text-foreground">Sales Management</h1>
           <p className="text-muted-foreground">Track and manage all sales transactions.</p>
         </div>
-        <Button className="bg-gradient-primary hover:shadow-glow transition-all duration-300">
+        <Button 
+          className="bg-gradient-primary hover:shadow-glow transition-all duration-300"
+          onClick={handleExportSales}
+        >
           <Download className="mr-2 h-4 w-4" />
           Export Sales
         </Button>

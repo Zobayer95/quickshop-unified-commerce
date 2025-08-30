@@ -136,7 +136,25 @@ export default function PurchaseOrders() {
           <Package className="h-6 w-6 text-primary" />
           <h1 className="text-3xl font-bold text-primary">Purchase Orders</h1>
         </div>
-        <Button onClick={() => setShowProductPicker(false)}>
+        <Button 
+          onClick={() => {
+            // Reset form to create new order
+            setSelectedSupplier("");
+            setOrderItems([]);
+            setOrderDetails({
+              orderDate: new Date().toISOString().split('T')[0],
+              expectedDelivery: "",
+              notes: "",
+              priority: "medium"
+            });
+            setShowProductPicker(false);
+            toast({
+              title: "New Order Started",
+              description: "You can now create a new purchase order",
+            });
+          }}
+          className="bg-gradient-primary hover:shadow-glow transition-all duration-300"
+        >
           <Plus className="h-4 w-4 mr-2" />
           New Purchase Order
         </Button>
